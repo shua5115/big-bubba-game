@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://j1eynj6q7cpj"]
+[gd_scene load_steps=7 format=3 uid="uid://j1eynj6q7cpj"]
 
 [ext_resource type="PackedScene" uid="uid://dnwo2wep0d12u" path="res://big_bubba.tscn" id="1_ira0o"]
+[ext_resource type="Texture2D" uid="uid://cgy5422meyst0" path="res://dev/Tutorial Sketch.png" id="2_d12ds"]
+[ext_resource type="Material" uid="uid://dawnpwh252bye" path="res://assets/GrassMat.tres" id="3_l8met"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ira0o"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -14,24 +16,137 @@ background_mode = 2
 sky = SubResource("Sky_d12ds")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ira0o"]
-albedo_color = Color(0.471375, 0.471375, 0.471375, 1)
+fog_enabled = true
+fog_sky_affect = 0.0
 
 [node name="ShwaaTesting" type="Node3D"]
+
+[node name="Tutorial Level Layout" type="Sprite3D" parent="."]
+transform = Transform3D(-3.49691e-07, 0, 8, 0, 8, 0, -8, 0, -3.49691e-07, 37, -0.125, -32)
+centered = false
+axis = 1
+transparent = false
+shaded = true
+texture = ExtResource("2_d12ds")
+metadata/_edit_lock_ = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_l8met")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-material_override = SubResource("StandardMaterial3D_ira0o")
-use_collision = true
-size = Vector3(100, 1, 100)
-
 [node name="BigBubba" parent="." instance=ExtResource("1_ira0o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0929316, 1, 0.18111)
+SPEED = 10.0
+
+[node name="Tutorial Level" type="Node3D" parent="."]
+
+[node name="Field" type="CSGBox3D" parent="Tutorial Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(64, 1, 64)
+material = ExtResource("3_l8met")
+
+[node name="Hallway1" type="CSGCombiner3D" parent="Tutorial Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -32)
+use_collision = true
+
+[node name="CSGBox3D1" type="CSGBox3D" parent="Tutorial Level/Hallway1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17)
+use_collision = true
+size = Vector3(6, 1, 34)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tutorial Level/Hallway1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9, 0, -31)
+use_collision = true
+size = Vector3(6, 1, 12)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tutorial Level/Hallway1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, 0, -15.5)
+use_collision = true
+size = Vector3(6, 1, 16)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tutorial Level/Hallway1"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, -16, 2.5, -27.5)
+use_collision = true
+size = Vector3(6, 1, 20)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial Level/Hallway1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 5, -41)
+use_collision = true
+size = Vector3(6, 1, 8)
+
+[node name="Arena1" type="CSGBox3D" parent="Tutorial Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, -85.25)
+use_collision = true
+size = Vector3(36, 1, 30)
+
+[node name="CSGBox3D1" type="CSGBox3D" parent="Tutorial Level/Arena1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 14.5)
+size = Vector3(36, 5, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tutorial Level/Arena1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 3, -14.5)
+size = Vector3(19, 5, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tutorial Level/Arena1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 3, 0)
+size = Vector3(1, 5, 30)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tutorial Level/Arena1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.5, 3, 0)
+size = Vector3(1, 5, 30)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial Level/Arena1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 3, -14.5)
+size = Vector3(11, 5, 1)
+
+[node name="Maze1" type="CSGCombiner3D" parent="Tutorial Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -100)
+use_collision = true
+
+[node name="CSGBox3D1" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -9.25)
+size = Vector3(6, 1, 18.5)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -43.75)
+size = Vector3(8, 1, 38.5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 0, -60.75)
+size = Vector3(11, 1, 33.5)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -9, 0, -70.25)
+size = Vector3(14.5, 1, 20)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.5, 0, -40)
+size = Vector3(8, 1, 23)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 7, -61)
+size = Vector3(8, 1, 40)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5, 3.26685, -21.5)
+size = Vector3(8, 1, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -21.5)
+size = Vector3(23, 1, 6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(0.976296, -0.21644, 0, 0.21644, 0.976296, 0, 0, 0, 1, 11, 1.5, -21.5)
+size = Vector3(16, 1, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(-4.26753e-08, 9.46088e-09, 1, 0.21644, 0.976296, 0, -0.976296, 0.21644, -4.37114e-08, 22.5, 5, -32.5)
+size = Vector3(18, 1, 8)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Tutorial Level/Maze1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 6.5, -53.5)
+size = Vector3(12, 14, 19)
