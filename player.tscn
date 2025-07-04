@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://do275u3n5xio6"]
+
+[ext_resource type="Script" uid="uid://77152mi6ka5g" path="res://scripts/bubba.gd" id="1_i3pqv"]
+[ext_resource type="ArrayMesh" uid="uid://dhperrgapc3dv" path="res://assets/bubba-arm.obj" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://mp10aweuybku" path="res://assets/game_arm.png" id="2_i3pqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
+albedo_texture = ExtResource("2_i3pqv")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
+albedo_texture = ExtResource("2_i3pqv")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i3pqv"]
+radius = 3.67569
+height = 15.0525
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("arm1", "arm2", "camera_holder", "camera")]
+script = ExtResource("1_i3pqv")
+arm1 = NodePath("CameraHolder/Camera3D/MeshInstance3D2")
+arm2 = NodePath("CameraHolder/Camera3D/MeshInstance3D")
+camera_holder = NodePath("CameraHolder")
+camera = NodePath("CameraHolder/Camera3D")
+
+[node name="CameraHolder" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.820122, 0.572189, 0, -0.572189, 0.820122, -4.88034, 5.85525, 5.84427)
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder"]
+current = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CameraHolder/Camera3D"]
+transform = Transform3D(-0.754973, 0, 0, 0, 0.651289, -0.426695, 0, 0.426695, 0.651289, -3.77663, -5.21173, -5.76625)
+mesh = ExtResource("1_onrkg")
+skeleton = NodePath("../MeshInstance3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_i3pqv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraHolder/Camera3D"]
+transform = Transform3D(0.778617, 0, 0, 0, 0.651289, -0.426695, 0, 0.426695, 0.651289, 3.81913, -5.2364, -5.80765)
+mesh = ExtResource("1_onrkg")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_hqtel")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0441, 0, 5.77626)
+shape = SubResource("CapsuleShape3D_i3pqv")
