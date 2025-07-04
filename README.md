@@ -12,4 +12,3 @@ This is a game made by TIC Maryland counselors about a water bottle on a quest f
 3. Put testing scenes or scripts in the `/dev` folder, it will be omitted from builds to save space.
 
 4. Put assets into the assets folder, scripts into the scripts folder, devs into the dev folder, etc...
--shua

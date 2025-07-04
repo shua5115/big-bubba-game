@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://dnwo2wep0d12u"]
+
+[ext_resource type="Script" uid="uid://77152mi6ka5g" path="res://scripts/bubba.gd" id="1_naxab"]
+[ext_resource type="ArrayMesh" uid="uid://dhperrgapc3dv" path="res://assets/bubba-arm.obj" id="2_0ffua"]
+[ext_resource type="Material" uid="uid://bwkcajq6tb0b3" path="res://assets/ArmMat.tres" id="3_fger6"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ged4"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="Curve" id="Curve_0ffua"]
+_data = [Vector2(0, 0.666044), 0.0, 0.0, 0, 0, Vector2(0.104089, 0.659972), 0.0, 0.0, 0, 0, Vector2(0.141264, 0.471742), 0.0, 0.0, 0, 0, Vector2(0.379182, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_fger6"]
+radius = 0.25
+curve = SubResource("Curve_0ffua")
+
+[node name="BigBubba" type="CharacterBody3D" node_paths=PackedStringArray("arm1", "arm2", "camera")]
+script = ExtResource("1_naxab")
+arm1 = NodePath("Camera3D/ArmL")
+arm2 = NodePath("Camera3D/ArmR")
+camera = NodePath("Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_4ged4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+fov = 90.0
+
+[node name="ArmL" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.5, -0.414429, -0.5233)
+mesh = ExtResource("2_0ffua")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_fger6")
+
+[node name="ArmR" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.5, -0.414429, -0.5233)
+mesh = ExtResource("2_0ffua")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("3_fger6")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("TubeTrailMesh_fger6")

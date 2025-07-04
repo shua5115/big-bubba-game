@@ -1,13 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddadm2ceafje0"]
+[gd_scene load_steps=6 format=3 uid="uid://j1eynj6q7cpj"]
 
-[ext_resource type="PackedScene" uid="uid://buhb02eyttffh" path="res://big_bubba.tscn" id="1_ira0o"]
+[ext_resource type="PackedScene" uid="uid://dnwo2wep0d12u" path="res://big_bubba.tscn" id="1_ira0o"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ira0o"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[node name="Ground" type="CSGBox3D" parent="."]
+[sub_resource type="Sky" id="Sky_d12ds"]
+sky_material = SubResource("ProceduralSkyMaterial_ira0o")
+
+[sub_resource type="Environment" id="Environment_l8met"]
+background_mode = 2
+sky = SubResource("Sky_d12ds")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ira0o"]
+albedo_color = Color(0.471375, 0.471375, 0.471375, 1)
+
+[node name="ShwaaTesting" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l8met")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_ira0o")
+use_collision = true
 size = Vector3(100, 1, 100)
-metadata/_edit_lock_ = true
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_ira0o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+[node name="BigBubba" parent="." instance=ExtResource("1_ira0o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0929316, 1, 0.18111)
