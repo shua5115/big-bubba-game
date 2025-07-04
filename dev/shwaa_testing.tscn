@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddadm2ceafje0"]
+[gd_scene load_steps=2 format=3 uid="uid://ddadm2ceafje0"]
 
-[ext_resource type="Script" uid="uid://77152mi6ka5g" path="res://scripts/bubba.gd" id="1_ira0o"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vak1i"]
-radius = 0.25
-height = 1.0
+[ext_resource type="PackedScene" uid="uid://buhb02eyttffh" path="res://big_bubba.tscn" id="1_ira0o"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -13,9 +9,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 size = Vector3(100, 1, 100)
 metadata/_edit_lock_ = true
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_ira0o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-script = ExtResource("1_ira0o")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_vak1i")
