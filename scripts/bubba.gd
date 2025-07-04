@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var SPEED_SNAP : float = 100
 @export var JUMP_VELOCITY = 4.5
 
-var arm_off_pos = -1
+var arm_off_pos : float
 
 var time : float = 0
 
