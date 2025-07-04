@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 [gd_scene load_steps=7 format=3 uid="uid://coyuqntqlgm76"]
 
 [ext_resource type="Script" uid="uid://77152mi6ka5g" path="res://scripts/bubba.gd" id="1_i3pqv"]
 [ext_resource type="ArrayMesh" path="res://assets/bubba-arm.obj" id="1_onrkg"]
 [ext_resource type="Texture2D" path="res://assets/game_arm.png" id="2_i3pqv"]
+=======
+[gd_scene load_steps=7 format=3 uid="uid://do275u3n5xio6"]
+
+[ext_resource type="Script" uid="uid://77152mi6ka5g" path="res://scripts/bubba.gd" id="1_i3pqv"]
+[ext_resource type="ArrayMesh" uid="uid://dhperrgapc3dv" path="res://assets/bubba-arm.obj" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://mp10aweuybku" path="res://assets/game_arm.png" id="2_i3pqv"]
+>>>>>>> player_movement
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
 albedo_texture = ExtResource("2_i3pqv")
