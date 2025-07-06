@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnjgq2rvbeq1s"]
+
+[ext_resource type="ArrayMesh" uid="uid://bihxgdp8vis83" path="res://assets/spaceplatform.obj" id="1_h1g3r"]
+[ext_resource type="Texture2D" uid="uid://yv1wxcp5wdx3" path="res://assets/groundtexture.png" id="2_7gn3u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8m85o"]
+albedo_texture = ExtResource("2_7gn3u")
+texture_filter = 0
+disable_receive_shadows = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h1g3r"]
+size = Vector3(6.47928, 2.75586, 6.30838)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+
+[node name="Spaceplatform" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.566103, 0, 0, 0, 0.566103, 0, 0, 0, 0.566103, 0, 0, 0)
+mesh = ExtResource("1_h1g3r")
+surface_material_override/0 = SubResource("StandardMaterial3D_8m85o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0602875, 0.87793, 0.0324554)
+shape = SubResource("BoxShape3D_h1g3r")

@@ -5,3 +5,5 @@
 [resource]
 albedo_texture = ExtResource("1_0wb23")
 uv1_triplanar = true
+texture_filter = 0
+disable_receive_shadows = true

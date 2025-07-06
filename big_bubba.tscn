@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnwo2wep0d12u"]
+[gd_scene load_steps=11 format=3 uid="uid://dnwo2wep0d12u"]
 
 [ext_resource type="Script" uid="uid://77152mi6ka5g" path="res://scripts/bubba.gd" id="1_naxab"]
 [ext_resource type="ArrayMesh" uid="uid://dhperrgapc3dv" path="res://assets/bubba-arm.obj" id="2_0ffua"]
 [ext_resource type="Material" uid="uid://bwkcajq6tb0b3" path="res://assets/ArmMat.tres" id="3_fger6"]
+[ext_resource type="Texture2D" uid="uid://bmfy7y0d1ls61" path="res://assets/space.jpg" id="4_fger6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4ged4"]
 radius = 0.25
@@ -16,6 +17,18 @@ point_count = 5
 radius = 0.25
 curve = SubResource("Curve_0ffua")
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_rglk0"]
+panorama = ExtResource("4_fger6")
+filter = false
+
+[sub_resource type="Sky" id="Sky_jjjvu"]
+sky_material = SubResource("PanoramaSkyMaterial_rglk0")
+
+[sub_resource type="Environment" id="Environment_0ffua"]
+background_mode = 2
+sky = SubResource("Sky_jjjvu")
+ambient_light_energy = 15.6
+
 [node name="BigBubba" type="CharacterBody3D" node_paths=PackedStringArray("arm1", "arm2", "camera")]
 script = ExtResource("1_naxab")
 arm1 = NodePath("Camera3D/ArmL")
@@ -25,6 +38,10 @@ camera = NodePath("Camera3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_4ged4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 2.94093, 0)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -42,6 +59,14 @@ mesh = ExtResource("2_0ffua")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("3_fger6")
 
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.00945955, -0.999955, 0, 0.999955, 0.00945955, 0, -0.0983416, 0)
+target_position = Vector3(0, -3.02, 0)
+collision_mask = 2
+
 [node name="Body" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("TubeTrailMesh_fger6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0ffua")

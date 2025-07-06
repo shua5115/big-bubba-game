@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bmrwfgmneks2g"]
+[gd_scene load_steps=3 format=3 uid="uid://bmrwfgmneks2g"]
+
+[ext_resource type="PackedScene" uid="uid://dnwo2wep0d12u" path="res://big_bubba.tscn" id="1_tyktd"]
+[ext_resource type="PackedScene" uid="uid://bnjgq2rvbeq1s" path="res://Platform.tscn" id="2_ni2rx"]
 
 [node name="ZachTesting" type="Node3D"]
+
+[node name="BigBubba" parent="." instance=ExtResource("1_tyktd")]
+
+[node name="StaticBody3D3" parent="." instance=ExtResource("2_ni2rx")]
+transform = Transform3D(4.2101, 0, 0, 0, 3.18148, 0, 0, 0, 3.3975, 12.7578, -8.56161, -13.8946)
+
+[node name="StaticBody3D2" parent="." instance=ExtResource("2_ni2rx")]
+transform = Transform3D(8.71036, 0, 0, 0, 6.82616, 0, 0, 0, 6.9387, -15.6114, -34.4004, -23.0467)
+
+[node name="StaticBody3D" parent="." instance=ExtResource("2_ni2rx")]
+transform = Transform3D(2.03492, 0, 0, 0, 1.4828, 0, 0, 0, 1.66356, -0.263023, -3.79307, -0.818407)

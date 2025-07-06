@@ -52,3 +52,7 @@ func _physics_process(delta: float) -> void:
 	velocity.z = res_xz_vel.y
 
 	move_and_slide()
+
+func shoot():
+	
+	pass
