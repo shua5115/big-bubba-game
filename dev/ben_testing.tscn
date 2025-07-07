@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvgsn07d4ro14"]
+
+[ext_resource type="PackedScene" uid="uid://dnwo2wep0d12u" path="res://big_bubba.tscn" id="1_w6rbt"]
+[ext_resource type="PackedScene" uid="uid://py3wwd67jly6" path="res://enemy.tscn" id="2_rdr5f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdr5f"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jq1ly"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_rdr5f"]
+vertices = PackedVector3Array(-0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rdr5f"]
+
+[node name="BenTesting" type="Node3D"]
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 117.922, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(107.405, 0, 0, 0, 1, 0, 0, 0, 114.297, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_rdr5f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_jq1ly")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="StaticBody3D"]
+navigation_mesh = SubResource("NavigationMesh_rdr5f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_rdr5f")
+
+[node name="enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_rdr5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986909, 1.081, 1.12764)
+movement_speed = 4.5
+target = NodePath("../BigBubba")
+
+[node name="BigBubba" parent="." instance=ExtResource("1_w6rbt")]

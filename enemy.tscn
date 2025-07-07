@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://py3wwd67jly6"]
+
+[ext_resource type="Script" uid="uid://dg4hi7hfnp3fl" path="res://enemy.gd" id="1_7k104"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4gyqm"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qi2p4"]
+
+[node name="enemy" type="CharacterBody3D"]
+script = ExtResource("1_7k104")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("CapsuleShape3D_4gyqm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("CapsuleMesh_qi2p4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="RigidBody3D"]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
