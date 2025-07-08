@@ -37,7 +37,7 @@ mesh = SubResource("PlaneMesh_rdr5f")
 
 [node name="enemy" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_rdr5f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986909, 1.081, 1.12764)
-movement_speed = 4.5
+movement_speed = 2.5
 target = NodePath("../BigBubba")
 
 [node name="BigBubba" parent="." instance=ExtResource("1_w6rbt")]
