@@ -7,14 +7,15 @@ var movement_target_position: Vector3
 
 func _ready():
 	
-	navigation_agent.path_desired_distance = 5.0
-	navigation_agent.target_desired_distance = 5.0
+	navigation_agent.path_desired_distance = 1.5
+	navigation_agent.target_desired_distance = 1.5
 
 	
 	actor_setup.call_deferred()
 
 func _process(delta):
 	movement_target_position=target.global_position
+	navigation_agent.target_position=target.global_position
 func actor_setup():
 	
 	await get_tree().physics_frame
@@ -24,8 +25,8 @@ func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
 func _physics_process(delta):
-	if navigation_agent.is_navigation_finished():
-		navigation_agent.target_position=target.global_position
+	
+		
 
 	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
